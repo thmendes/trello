@@ -24,14 +24,14 @@
       "name": "Siôn Le Roux",
       "email": "sinisterstuf@gmail.com"
     },
-	{
-	  "name": "Mike Garuccio",
-	  "url": "https://github.com/mgaruccio"
-	},
-	{
-	  "name": "Karel Piwko",
-	  "url": "https://github.com/kpiwko"
-	}
+    {
+      "name": "Mike Garuccio",
+      "url": "https://github.com/mgaruccio"
+    },
+    {
+      "name": "Karel Piwko",
+      "url": "https://github.com/kpiwko"
+    }
   ],
   "scripts": {
     "test": "node node_modules/mocha/bin/mocha"
@@ -46,16 +46,21 @@
     "trello"
   ],
   "dependencies": {
+    "body-parser": "^1.18.3",
     "es6-promise": "~3.0.2",
-    "restler": "~3.3.0",
-    "object-assign": "~4.1.0"
+    "express": "^4.16.3",
+    "mongodb": "^2.2.16",
+    "object-assign": "~4.1.0",
+    "restler": "~3.3.0"
   },
   "devDependencies": {
-    "mocha": "~2.3.2",
     "chai": "3.2.0",
+    "method-override": "^2.3.10",
+    "mocha": "~2.3.2",
+    "nodemon": "^1.17.5",
+    "q": "~1.4.1",
     "sinon": "~1.16.1",
-    "sinon-chai": "~2.8.0",
-    "q": "~1.4.1"
+    "sinon-chai": "~2.8.0"
   },
   "license": "MIT",
   "engines": {
