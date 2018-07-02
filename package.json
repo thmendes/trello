@@ -34,7 +34,8 @@
     }
   ],
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha"
+    "test": "node node_modules/mocha/bin/mocha",
+    "build": "webpack"
   },
   "main": "main.js",
   "homepage": "https://github.com/norberteder/trello",
@@ -46,12 +47,18 @@
     "trello"
   ],
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.1",
     "es6-promise": "~3.0.2",
     "express": "^4.16.3",
+    "jquery": "^3.3.1",
     "mongodb": "^2.2.16",
     "object-assign": "~4.1.0",
-    "restler": "~3.3.0"
+    "popper.js": "^1.14.3",
+    "restler": "~3.3.0",
+    "vue": "^2.5.16",
+    "vue-axios": "^2.1.1"
   },
   "devDependencies": {
     "chai": "3.2.0",
@@ -60,7 +67,19 @@
     "nodemon": "^1.17.5",
     "q": "~1.4.1",
     "sinon": "~1.16.1",
-    "sinon-chai": "~2.8.0"
+    "sinon-chai": "~2.8.0",
+    "prettier": "^1.9.2",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-3": "^6.24.1",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.4",
+    "vue-loader": "^13.0.5",
+    "vue-template-compiler": "^2.4.4",
+    "webpack": "^3.6.0",
+    "webpack-dev-server": "^2.9.1"
   },
   "license": "MIT",
   "engines": {
