@@ -26,4 +26,21 @@ trelloSpyRoutes.route('/boards').get(function (req, res, next){
     })
 })
 
+trelloSpyRoutes.route('/boards/:id/labels').get(function(req, res, next){
+    var id = req.params.id
+    trello.getLabelsForBoard(id, function(error, labels){
+        if(error){
+            console.log('Could not get labels')
+        }
+        else{
+            console.log('Labels rescued')
+            res.json(JSON.parse(JSON.stringify(labels)))
+        }
+    })
+})
+
+
+
+
+
 module.exports = trelloSpyRoutes

@@ -1,13 +1,15 @@
 <template>
     <div>
-        <h3>Boards</h3>
-        <div class="col-md-12" v-show="boards.length > 0">
-            <div class="row mrb-10" v-for="board in boards" :key="board.id">
-                <div class="input-group m-b-5">
-                    {{ board.name }}
-                </div>
+        <div class="row">
+            <div class="col-md-12" v-show="boards.length > 0">
+                <h3 class="m-x-y-5">Boards</h3>
+                <button type="button" class="btn btn-primary left m-x-y-5" v-for="board in boards" :key="board.id" v-on:click="getBoardInfos(board.id)">
+                    {{ board.name }} <span class="badge badge-light"></span>
+                    <span class="sr-only">Board</span>
+                </button>
             </div>
         </div>
+        
     </div>
 </template>
 
@@ -30,32 +32,20 @@
                 axios.get(uri).then((response) => {
                     this.boards = response.data;
                 })
+            },
+            getBoardInfos(id)
+            {
+                this.refreshLabels(id);
+            },
+            refreshLabels(boardId){
+                bus.$emit("refreshLabels", boardId);
             }
         }
     }
 </script>
 
 <style scoped>
-    .todo__done {
-        text-decoration: line-through !important
-    }
-    .no_border_left_right {
-        border-left: 0px;
-        border-right: 0px;
-    }
-    .flat_form {
-        border-radius: 0px;
-    }
-    .mrb-10 {
-        margin-bottom: 10px;
-    }
-    .addon-left {
-        background-color: none !important;
-        border-left: 0px !important;
-        cursor: pointer !important;
-    }
-    .addon-right {
-        background-color: none !important;
-        border-right: 0px !important;
+    .m-x-y-5{
+        margin: 5px 5px 5px 5px;
     }
 </style>
