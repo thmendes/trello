@@ -377,5 +377,18 @@ Trello.prototype.search = function(uriParams, callback) {
     return makeRequest(rest.get, this.uri + '/1/search/' + uriParams, {query: query}, callback);
 }
 
+Trello.prototype.getBoardInformation = function(boardId, callback) {
+    var query = this.createQuery();
+    query.fields = 'id,name'
+    query.lists = 'open'
+    query.list_fields = 'id,name'
+    query.cards = 'open'
+    query.card_fields = 'id,name,labels'
+    query.labels = 'all'
+    query.members = 'all'
+    query.member_fields = 'id,fullName'
+
+    return makeRequest(rest.get, this.uri + '/1/boards/' + boardId, {query: query}, callback);
+}
 
 module.exports = Trello;

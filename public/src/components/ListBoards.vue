@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="row">
-            <div class="col-md-12" v-show="boards.length > 0">
+            <div class="col-md-12" >
                 <h3 class="m-x-y-5">Boards</h3>
                 <button type="button" class="btn btn-primary left m-x-y-5" v-for="board in boards" :key="board.id" v-on:click="getBoardInfos(board.id)">
                     {{ board.name }} <span class="badge badge-light"></span>
@@ -20,7 +20,8 @@
     export default {
         data() {
             return {
-                boards: []
+                boards: [],
+                boardInformation: ''
             }
         },
         created: function(){
@@ -35,10 +36,30 @@
             },
             getBoardInfos(id)
             {
-                this.refreshLabels(id);
+                this.fetchBoardInfos(id);
+                
             },
-            refreshLabels(boardId){
-                bus.$emit("refreshLabels", boardId);
+            fetchBoardInfos(boardId){
+                let uri = 'http://localhost:4000/api/board/' + boardId + '/information';
+                axios.get(uri).then((response) => {
+                    this.boardInformation = response.data;
+                    this.refreshLists(this.boardInformation.lists);
+                    this.refreshLabels(this.boardInformation.labels);
+                    this.refreshMembers(this.boardInformation.members);
+                    this.refreshReports(this.boardInformation.id);
+                })
+            },
+            refreshLabels(boardLabels){
+                bus.$emit("refreshLabels", boardLabels);
+            },
+            refreshLists(boardLists){
+                bus.$emit("refreshLists", boardLists);
+            },
+            refreshMembers(boardMembers){
+                bus.$emit("refreshMembers", boardMembers);
+            },
+            refreshReports(boardId){
+                bus.$emit("refreshReports", boardId);
             }
         }
     }

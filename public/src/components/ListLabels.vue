@@ -1,13 +1,13 @@
 <template>
     <div class="row" v-show="labels.length > 0">
-            <div class="col-md-12">
-                <h3 class="m-x-y-5">Labels</h3>
-                <button type="button" class="btn btn-secondary left m-x-y-5" v-for="label in labels" :key="label.id" v-show="label.name.length > 0">
-                    {{ label.name }} <span class="badge badge-light"></span>
-                    <span class="sr-only">Board</span>
-                </button>
-            </div>
+        <div class="col-md-12">
+            <h3 class="m-x-y-5">Labels</h3>
+            <button type="button" class="btn btn-secondary left m-x-y-5 no-border" v-bind:style="{ backgroundColor: label.color }"  v-for="label in labels" :key="label.id" v-show="label.name.length > 0">
+                {{ label.name }} <span class="badge badge-light"></span>
+                <span class="sr-only">Labels</span>
+            </button>
         </div>
+    </div>
 </template>
 
 <script>
@@ -24,15 +24,9 @@
             this.listenToEvents();
         },
         methods: {
-            fetchLabels(boardId){
-                let uri = 'http://localhost:4000/api/boards/' + boardId + '/labels';
-                axios.get(uri).then((response) => { 
-                    this.labels = response.data;
-                })
-            },
             listenToEvents(){
-                bus.$on('refreshLabels', (boardId) => {
-                    this.fetchLabels(boardId);
+                bus.$on('refreshLabels', (boardLabels) => {
+                    this.labels = boardLabels;
                 })
             }
         }
@@ -42,5 +36,8 @@
 <style scoped>
     .m-x-y-5{
         margin: 5px 5px 5px 5px;
+    }
+    .no-border{
+        border: none;
     }
 </style>
